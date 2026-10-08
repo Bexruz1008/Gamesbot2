@@ -1,6 +1,8 @@
+import os
 import asyncio
 import logging
 import sys
+from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand, BotCommandScopeDefault
 from config import BOT_TOKEN
@@ -14,6 +16,22 @@ logging.basicConfig(
     stream=sys.stdout
 )
 logger = logging.getLogger(__name__)
+
+
+async def health(request):
+    return web.Response(text="OK")
+
+
+async def start_web():
+    """Render uchun port ochadigan kichik HTTP server"""
+    app = web.Application()
+    app.router.add_get("/", health)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    site = web.TCPSite(runner, "0.0.0.0", int(os.environ.get("PORT", 10000)))
+    await site.start()
+    logger.info("Veb-server ishga tushdi.")
+
 
 async def set_bot_commands(bot: Bot):
     """Telegram menyusidagi buyruqlar ro'yxatini sozlash"""
@@ -30,12 +48,17 @@ async def set_bot_commands(bot: Bot):
     ]
     await bot.set_my_commands(commands, scope=BotCommandScopeDefault())
 
+
 async def main():
     if not BOT_TOKEN:
-        logger.error("XATOLIK: .env faylida BOT_TOKEN ko'rsatilmagan! Iltimos, token kiriting.")
+        logger.error("XATOLIK: BOT_TOKEN topilmadi! Environment o'zgaruvchisini tekshiring.")
         return
 
     logger.info("Bot ishga tushirilmoqda...")
+
+    # Render port topishi uchun veb-serverni birinchi ishga tushiramiz
+    await start_web()
+
     bot = Bot(token=BOT_TOKEN)
     dp = Dispatcher()
 
@@ -53,6 +76,7 @@ async def main():
     # Pollingni boshlash
     logger.info("Bot tayyor va xabarlarni kutmoqda!")
     await dp.start_polling(bot)
+
 
 if __name__ == "__main__":
     try:
