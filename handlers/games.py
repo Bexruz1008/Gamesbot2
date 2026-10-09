@@ -47,10 +47,11 @@ async def initiate_game(
     message: Message,
     game_type: str,
     target_id: Optional[int] = None,
-    target_name: Optional[str] = None
+    target_name: Optional[str] = None,
+    initiator=None
 ):
     """Yangi o'yin dueli xabarini yaratish va guruhga jo'natish"""
-    initiator = message.from_user
+    initiator = initiator or message.from_user
     chat_id = message.chat.id
 
     game = games_manager.create_game(
@@ -126,7 +127,7 @@ async def cmd_duel(message: Message):
 
     await message.reply(
         text,
-        reply_markup=get_games_menu_keyboard(target_id or 0),
+        reply_markup=get_games_menu_keyboard(target_id or 0, message.from_user.id),
         parse_mode="HTML"
     )
 
@@ -143,8 +144,16 @@ def _extract_target(message: Message):
 @games_router.callback_query(F.data.startswith("start_type:"))
 async def cb_start_type(callback: CallbackQuery):
     parts = callback.data.split(":")
+    if len(parts) != 4:
+        await callback.answer("Bu menyu eskirgan. Yangi /game buyrug'ini yuboring.", show_alert=True)
+        return
+
     game_type = parts[1]
     target_id = int(parts[2]) if len(parts) > 2 and parts[2] != "0" else None
+    opener_id = int(parts[3])
+    if callback.from_user.id != opener_id:
+        await callback.answer("O'yin turini faqat menyuni ochgan odam tanlay oladi.", show_alert=True)
+        return
     target_name = None
 
     # Eski xabarni o'chirib yangi chaqiruv chiqarish
@@ -153,7 +162,7 @@ async def cb_start_type(callback: CallbackQuery):
     except Exception:
         pass
 
-    await initiate_game(callback.message, game_type, target_id, target_name)
+    await initiate_game(callback.message, game_type, target_id, target_name, callback.from_user)
     await callback.answer()
 
 
@@ -465,5 +474,5 @@ async def cb_dice_roll(callback: CallbackQuery, bot: Bot):
 @games_router.callback_query(F.data.startswith("rematch:"))
 async def cb_rematch(callback: CallbackQuery):
     game_type = callback.data.split(":")[1]
-    await initiate_game(callback.message, game_type)
+    await initiate_game(callback.message, game_type, initiator=callback.from_user)
     await callback.answer("Yangi duel chaqiruvi yuborildi! 🚀")

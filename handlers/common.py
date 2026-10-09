@@ -104,12 +104,17 @@ async def cmd_game_menu(message: Message):
 
     await message.reply(
         text,
-        reply_markup=get_games_menu_keyboard(target_id),
+        reply_markup=get_games_menu_keyboard(target_id, message.from_user.id),
         parse_mode="HTML"
     )
 
-@common_router.callback_query(F.data == "close_menu")
+@common_router.callback_query(F.data.startswith("close_menu:"))
 async def cb_close_menu(callback: CallbackQuery):
+    opener_id = int(callback.data.split(":")[1])
+    if callback.from_user.id != opener_id:
+        await callback.answer("Bu menyuni faqat uni ochgan odam boshqara oladi.", show_alert=True)
+        return
+
     try:
         await callback.message.delete()
     except Exception:

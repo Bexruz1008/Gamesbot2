@@ -1,39 +1,39 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-def get_games_menu_keyboard(target_user_id: int = 0) -> InlineKeyboardMarkup:
+def get_games_menu_keyboard(target_user_id: int = 0, opener_user_id: int = 0) -> InlineKeyboardMarkup:
     """O'yin turini tanlash menyusi"""
     return InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(
                     text="🪨✂️📄 Tosh-Qaychi-Qog'oz",
-                    callback_data=f"start_type:rps:{target_user_id}"
+                    callback_data=f"start_type:rps:{target_user_id}:{opener_user_id}"
                 )
             ],
             [
                 InlineKeyboardButton(
                     text="🎲 Zar dueli",
-                    callback_data=f"start_type:dice:{target_user_id}"
+                    callback_data=f"start_type:dice:{target_user_id}:{opener_user_id}"
                 ),
                 InlineKeyboardButton(
                     text="🎯 Darts (Nishon)",
-                    callback_data=f"start_type:darts:{target_user_id}"
+                    callback_data=f"start_type:darts:{target_user_id}:{opener_user_id}"
                 )
             ],
             [
                 InlineKeyboardButton(
                     text="🏀 Basketbol dueli",
-                    callback_data=f"start_type:basket:{target_user_id}"
+                    callback_data=f"start_type:basket:{target_user_id}:{opener_user_id}"
                 ),
                 InlineKeyboardButton(
                     text="⚽ Futbol penalti",
-                    callback_data=f"start_type:football:{target_user_id}"
+                    callback_data=f"start_type:football:{target_user_id}:{opener_user_id}"
                 )
             ],
             [
                 InlineKeyboardButton(
                     text="❌ Yopish",
-                    callback_data="close_menu"
+                    callback_data=f"close_menu:{opener_user_id}"
                 )
             ]
         ]
