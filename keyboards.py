@@ -1,3 +1,4 @@
+from typing import List
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 def get_games_menu_keyboard(target_user_id: int = 0, opener_user_id: int = 0) -> InlineKeyboardMarkup:
@@ -28,6 +29,26 @@ def get_games_menu_keyboard(target_user_id: int = 0, opener_user_id: int = 0) ->
                 InlineKeyboardButton(
                     text="⚽ Futbol penalti",
                     callback_data=f"start_type:football:{target_user_id}:{opener_user_id}"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="🎳 Bowling dueli",
+                    callback_data=f"start_type:bowling:{target_user_id}:{opener_user_id}"
+                ),
+                InlineKeyboardButton(
+                    text="💣 Rus Ruletkasi",
+                    callback_data=f"start_type:roulette:{target_user_id}:{opener_user_id}"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="❌⭕ Tic-Tac-Toe",
+                    callback_data=f"start_type:tictactoe:{target_user_id}:{opener_user_id}"
+                ),
+                InlineKeyboardButton(
+                    text="🔢 Son Topish (1-100)",
+                    callback_data=f"start_type:guess_number:{target_user_id}:{opener_user_id}"
                 )
             ],
             [
@@ -82,6 +103,67 @@ def get_dice_roll_keyboard(game_id: str, emoji: str, roller_name: str) -> Inline
             ]
         ]
     )
+
+def get_roulette_keyboard(game_id: str, player_name: str) -> InlineKeyboardMarkup:
+    """Rus ruletkasida tetikni bosish tugmasi"""
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text=f"🔫 {player_name} tetikni bosadi!",
+                    callback_data=f"trigger:{game_id}"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="🏳️ Taslim bo'lish",
+                    callback_data=f"surrender:{game_id}"
+                )
+            ]
+        ]
+    )
+
+def get_ttt_keyboard(game_id: str, board: List[str]) -> InlineKeyboardMarkup:
+    """Tic-Tac-Toe 3x3 doskasi"""
+    rows = []
+    for r in range(3):
+        row = []
+        for c in range(3):
+            idx = r * 3 + c
+            cell_text = board[idx]
+            row.append(
+                InlineKeyboardButton(
+                    text=cell_text,
+                    callback_data=f"ttt:{game_id}:{idx}"
+                )
+            )
+        rows.append(row)
+    rows.append([
+        InlineKeyboardButton(
+            text="🏳️ Taslim bo'lish",
+            callback_data=f"surrender:{game_id}"
+        )
+    ])
+    return InlineKeyboardMarkup(inline_keyboard=rows)
+
+def get_guess_number_setup_keyboard(game_id: str, bot_username: str) -> InlineKeyboardMarkup:
+    """Son topish o'yinida maxfiy son tanlash tugmalari"""
+    buttons = [
+        [
+            InlineKeyboardButton(
+                text="🎲 Tasodifiy son berilsin",
+                callback_data=f"rndnum:{game_id}"
+            )
+        ]
+    ]
+    if bot_username:
+        buttons.insert(0, [
+            InlineKeyboardButton(
+                text="🤫 O'z sonimni kiritaman (Lichkada)",
+                url=f"https://t.me/{bot_username}?start=num_{game_id}"
+            )
+        ])
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_rematch_keyboard(game_type: str) -> InlineKeyboardMarkup:
     """O'yin tugagandan keyin qayta o'ynash tugmasi"""

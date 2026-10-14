@@ -1,24 +1,30 @@
-# 🎮 Telegram Mini O'yinlar va Jazolar Boti (Python aiogram 3)
+# 🎮 Telegram Mini O'yinlar Boti (Python aiogram 3)
 
-Telegram guruhlarida turli qiziqarli mini-o'yinlar (Tosh-qaychi-qog'oz, Zar, Darts, Basketbol, Futbol) o'ynash va mag'lub bo'lgan ishtirokchiga tasodifiy kulgili jazo/topshiriq berish uchun yaratilgan bot.
+Telegram guruhlarida turli qiziqarli mini-o'yinlar (Tosh-qaychi-qog'oz, Zar, Darts, Basketbol, Futbol, Bowling, Rus Ruletkasi, Tic-Tac-Toe, Son Topish) o'ynash uchun yaratilgan bot.
 
 ---
 
 ## 🚀 Xususiyatlari
 
 - **🪨✂️📄 Tosh-Qaychi-Qog'oz:**
-  - 1v1 duel tizimi.
-  - Har ikki ishtirokchi o'z tanlovini sir saqlagan holda inline tugmalar orqali qiladi.
-  - Ikkala tomon tanlagach, natija e'lon qilinadi.
-  - Durang bo'lsa avtomatik qayta tanlash imkoniyati.
+  - 1v1 duel tizimi, maxfiy inline tanlov va avtomatik durang qayta tanlash.
 - **🎲 Telegram Zar va Emoji Duellari:**
-  - 🎲 **Zar (Dice)** — kimga yuqori raqam tushsa g'olib bo'ladi.
-  - 🎯 **Darts (Nishon)** — nishon markaziga eng yaqin tekkan yutadi.
-  - 🏀 **Basketbol** — to'pni savatga tushirish bahsi.
-  - ⚽ **Futbol penalti** — to'pni darvozaga kiritish bahsi.
-  - Telegram'ning haqiqiy animatsiyali emojilaridan foydalaniladi (natijalar Telegram API orqali adolatli belgilanadi).
-- **⚡️ Kulgili Jazo va Topshiriqlar Tizimi:**
-  - Mag'lub bo'lgan ishtirokchiga bot avtomatik tarzda boyitilgan bazadan tasodifiy kulgili, qiziqarli va xavfsiz vazifa beradi (masalan: kulgili ovozda audio yozish, guruhdagilarga kompliment aytish, she'r to'qish va h.k.).
+  - 🎲 **Zar (Dice)** — eng yuqori ochko bahsi.
+  - 🎯 **Darts (Nishon)** — nishon markaziga aniq tekkazish.
+  - 🏀 **Basketbol** — savatga to'p tushirish bahsi.
+  - ⚽ **Futbol penalti** — darvozaga to'p kiritish bahsi.
+  - 🎳 **Bowling** — keglilarni maksimal qulatish bahsi.
+  - Telegram'ning haqiqiy animatsiyali emojilaridan foydalaniladi.
+- **💣 Xavfsiz Rus Ruletkasi:**
+  - 6 ta kamerali revolver barabani. O'yinchilar navbatma-navbat tetikni bosishadi, kimda patron chiqsa o'sha mag'lub bo'ladi.
+- **❌⭕ Tic-Tac-Toe (Krestik-Nolik):**
+  - 3x3 interaktiv inline doska, navbatli yurish, g'alaba kombinatsiyalari va durangni aniqlash.
+- **🔢 Son Topish (1-100):**
+  - Ikkala o'yinchi botda o'z maxfiy sonini belgilaydi (lichkada yoki tasodifiy son tanlash orqali).
+  - So'ng guruhda navbat bilan raqib soni taxmin qilinadi, bot "Kattaroq 📈" yoki "Kichikroq 📉" deb yo'naltiradi.
+- **🧹 Avto-tozalash (Auto-delete):**
+  - O'yin davomida tashlangan zar, darts va oraliq xabarlar 5 daqiqadan so'ng avtomatik o'chib ketadi.
+  - G'olib e'lon qilingan yakuniy natija xabari 12 soatdan so'ng guruhdan o'chiriladi.
 - **👥 Guruhda chaqirish usullari:**
   - **Ochiq duel:** Guruhda buyruq yuboriladi va har qanday xohlovchi "Duelni qabul qilish" tugmasini bosib o'yinga kiradi.
   - **Aniq ishtirokchiga duel:** Biror kishining xabariga **Reply** qilib buyruq yuborilsa, duel faqat o'sha shaxsga yo'naltiriladi.
@@ -35,8 +41,11 @@ Telegram guruhlarida turli qiziqarli mini-o'yinlar (Tosh-qaychi-qog'oz, Zar, Dar
 | `/darts` yoki `/nishon` | 🎯 Darts (nishon) duelini boshlash |
 | `/basket` | 🏀 Basketbol duelini boshlash |
 | `/football` yoki `/futbol` | ⚽ Futbol penalti duelini boshlash |
+| `/bowling` yoki `/bouling` | 🎳 Bowling duelini boshlash |
+| `/roulette` yoki `/ruletka` | 💣 Rus Ruletkasi duelini boshlash |
+| `/tictactoe` yoki `/xo` | ❌⭕ Tic-Tac-Toe duelini boshlash |
+| `/guess` yoki `/sontop` | 🔢 Son Topish (1-100) duelini boshlash |
 | `/duel` | Foydalanuvchiga duel e'lon qilish menyusi |
-| `/penalties` | Botdagi qiziqarli jazolar namunasini ko'rish |
 | `/help` | Botdan foydalanish qo'llanmasi |
 
 ---

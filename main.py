@@ -42,8 +42,11 @@ async def set_bot_commands(bot: Bot):
         BotCommand(command="darts", description="🎯 Darts (Nishon) dueli"),
         BotCommand(command="basket", description="🏀 Basketbol dueli"),
         BotCommand(command="football", description="⚽ Futbol penalti dueli"),
+        BotCommand(command="bowling", description="🎳 Bowling dueli"),
+        BotCommand(command="roulette", description="💣 Rus Ruletkasi"),
+        BotCommand(command="tictactoe", description="❌⭕ Tic-Tac-Toe o'ynash"),
+        BotCommand(command="guess", description="🔢 Son Topish (1-100)"),
         BotCommand(command="duel", description="⚔️ Foydalanuvchiga duel e'lon qilish"),
-        BotCommand(command="penalties", description="😈 Jazolar ro'yxatini ko'rish"),
         BotCommand(command="help", description="📖 Qo'llanmani ko'rish"),
     ]
     await bot.set_my_commands(commands, scope=BotCommandScopeDefault())
