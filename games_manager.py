@@ -34,12 +34,12 @@ class GameSession:
         self.current_roller_id: Optional[int] = None
 
         # Rus Ruletkasi uchun
-        # 6 ta kameradan 1 tasida o'q bor (0-5)
+        # 6 ta patron joyidan 1 tasida o'q bor (0-5)
         self.roulette_bullet = random.randint(0, 5)
         self.roulette_chamber = 0  # 0 dan 5 gacha aylanadi
         self.current_turn_id: Optional[int] = None
 
-        # Tic-Tac-Toe (Krestik-Nolik) uchun
+        # Tic-Tac-Toe (Xoch-Doira) uchun
         self.ttt_board: List[str] = ["⬜"] * 9
         self.ttt_symbols: Dict[int, str] = {}  # user_id -> '❌' yoki '⭕'
 

@@ -16,8 +16,8 @@ Telegram guruhlarida turli qiziqarli mini-o'yinlar (Tosh-qaychi-qog'oz, Zar, Dar
   - 🎳 **Bowling** — keglilarni maksimal qulatish bahsi.
   - Telegram'ning haqiqiy animatsiyali emojilaridan foydalaniladi.
 - **💣 Xavfsiz Rus Ruletkasi:**
-  - 6 ta kamerali revolver barabani. O'yinchilar navbatma-navbat tetikni bosishadi, kimda patron chiqsa o'sha mag'lub bo'ladi.
-- **❌⭕ Tic-Tac-Toe (Krestik-Nolik):**
+  - 6 ta patron joyli revolver barabani. O'yinchilar navbatma-navbat tepkini bosishadi, kimda patron chiqsa o'sha mag'lub bo'ladi.
+- **❌⭕ Tic-Tac-Toe (Xoch-Doira):**
   - 3x3 interaktiv inline doska, navbatli yurish, g'alaba kombinatsiyalari va durangni aniqlash.
 - **🔢 Son Topish (1-100):**
   - Ikkala o'yinchi botda o'z maxfiy sonini belgilaydi (lichkada yoki tasodifiy son tanlash orqali).

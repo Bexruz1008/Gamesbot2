@@ -190,7 +190,7 @@ async def cb_start_type(callback: CallbackQuery):
         return
 
     game_type = parts[1]
-    target_id = int(parts[2]) if len(parts) > 2 and parts[2] != "0" else None
+    target_id = int(parts[2]) if parts[2] != "0" else None
     opener_id = int(parts[3])
     if callback.from_user.id != opener_id:
         await callback.answer("O'yin turini faqat menyuni ochgan odam tanlay oladi.", show_alert=True)
@@ -246,7 +246,7 @@ async def cb_accept_game(callback: CallbackQuery, bot: Bot):
             f"Ikkala ishtirokchi ham o'z tanlovini qilsin (tanlov maxfiy qoladi):\n"
             f"• <b>{init_name_safe}</b>: ⏳ Kutilyapti\n"
             f"• <b>{opp_name_safe}</b>: ⏳ Kutilyapti\n\n"
-            f"Tanlovingizni quyidagi tugmalardan birini bosib qiling 👇"
+            f"O'z tanlovingizni qiling 👇"
         )
         await callback.message.edit_text(
             text,
@@ -261,7 +261,7 @@ async def cb_accept_game(callback: CallbackQuery, bot: Bot):
             f"👤 <b>{init_name_safe}</b> ⚔️ 👤 <b>{opp_name_safe}</b>\n\n"
             f"🎲 Qoida: Har bir ishtirokchi navbat bilan {game.dice_emoji} tashlaydi. Eng yuqori ball to'plagan yutadi!\n\n"
             f"👉 1-navbat: <b>{init_name_safe}</b>!\n"
-            f"Quyidagi tugmani bosing va zar tashlang 👇"
+            f"Quyidagi tugmani bosib o'z natijangizni tashlang 👇"
         )
         await callback.message.edit_text(
             text,
@@ -274,11 +274,11 @@ async def cb_accept_game(callback: CallbackQuery, bot: Bot):
         text = (
             f"💣 <b>Rus Ruletkasi Boshlandi!</b>\n\n"
             f"👤 <b>{init_name_safe}</b> ⚔️ 👤 <b>{opp_name_safe}</b>\n\n"
-            f"🔫 Barabanda 6 ta kamera mavjud, ulardan 1 tasida patron bor.\n"
-            f"Navbatma-navbat tetikni bosasiz. Kimda patron otilsa — o'sha mag'lub!\n\n"
-            f"🔄 Kamera: <b>1 / 6</b>\n"
+            f"🔫 Barabanda 6 ta patron joyi mavjud, ulardan 1 tasida patron bor.\n"
+            f"Navbatma-navbat tepkini bosasiz. Kimda patron chiqsa — o'sha mag'lub!\n\n"
+            f"🔄 Patron joyi: <b>1 / 6</b>\n"
             f"👉 1-navbat: <b>{init_name_safe}</b>!\n"
-            f"Tetikni bosing 👇"
+            f"Tepkini bosing 👇"
         )
         await callback.message.edit_text(
             text,
@@ -383,7 +383,7 @@ async def cb_rps_choice(callback: CallbackQuery):
             f"👤 <b>{init_name_safe}</b> ⚔️ 👤 <b>{opp_name_safe}</b>\n\n"
             f"• <b>{init_name_safe}</b>: {init_status}\n"
             f"• <b>{opp_name_safe}</b>: {opp_status}\n\n"
-            f"Ikkala ishtirokchi ham tanlov qilsin 👇"
+            f"Ikkala ishtirokchi ham o'z tanlovini qilsin 👇"
         )
         try:
             await callback.message.edit_text(
@@ -411,7 +411,7 @@ async def cb_rps_choice(callback: CallbackQuery):
             f"🤝 <b>DURANG BO'LDI!</b>\n\n"
             f"👤 <b>{init_name_safe}</b>: {init_choice_str}\n"
             f"👤 <b>{opp_name_safe}</b>: {opp_choice_str}\n\n"
-            f"Ikkalangiz ham bir xil tanladingiz! Qaytadan tanlang 👇"
+            f"Ikki tomondan ham bir xil tanlov! Qaytadan tanlang 👇"
         )
         await callback.message.edit_text(
             text,
@@ -496,7 +496,7 @@ async def cb_dice_roll(callback: CallbackQuery, bot: Bot):
             f"🎲 <b>{game.dice_emoji} {GAME_TITLES.get(game.game_type, 'Duel')}</b>\n\n"
             f"👤 <b>{user_name_safe}</b> natijasi: <b>{score}</b> ball! {game.dice_emoji}\n\n"
             f"👉 Endi navbat: <b>{opp_name_safe}</b>!\n"
-            f"Quyidagi tugmani bosing va o'z zar/to'pingizni tashlang 👇"
+            f"Quyidagi tugmani bosib o'z natijangizni tashlang 👇"
         )
         turn_msg = await callback.message.answer(
             text,
@@ -519,7 +519,7 @@ async def cb_dice_roll(callback: CallbackQuery, bot: Bot):
         game.scores.clear()
         game.current_roller_id = game.initiator_id
         text = (
-            f"🤝 <b>DURANG BO'LDI!</b> ({init_score} - {opp_score})\n\n"
+            f"🤝 <b>DURANG BO'LDI!</b> ({init_score} — {opp_score})\n\n"
             f"Ikkala ishtirokchi ham bir xil natija ko'rsatdi!\n"
             f"Qaytadan tashlanadi. 1-navbat: <b>{init_name_safe}</b> 👇"
         )
@@ -612,7 +612,7 @@ async def cb_roulette_trigger(callback: CallbackQuery, bot: Bot):
 
         result_text = (
             f"💥 <b>BOOM! O'Q OTILDI!</b> 💣\n\n"
-            f"💀 <b>{loser_name}</b> ning navbatida revolver otildi!\n\n"
+            f"💀 <b>{loser_name}</b> ning navbatida o'q chiqdi! Omadsiz...\n\n"
             f"━━━━━━━━━━━━━━━━━━\n"
             f"🥇 <b>G'OLIB:</b> <b>{winner_name}</b> 🎉\n"
             f"💀 <b>MAG'LUB:</b> <b>{loser_name}</b>\n"
@@ -624,7 +624,7 @@ async def cb_roulette_trigger(callback: CallbackQuery, bot: Bot):
             parse_mode="HTML"
         )
         schedule_delete_message(bot, game.chat_id, callback.message.message_id, FINAL_RESULT_DELETE_DELAY)
-        await callback.answer("💥 BOOM! O'q otildi!", show_alert=True)
+        await callback.answer("💥 O'q otildi!", show_alert=True)
     else:
         # Omadli o'tdi (Click!)
         other_id = game.get_other_user_id(user_id)
@@ -634,17 +634,17 @@ async def cb_roulette_trigger(callback: CallbackQuery, bot: Bot):
 
         text = (
             f"💣 <b>Rus Ruletkasi Davom Etmoqda!</b>\n\n"
-            f"🔫 <b>*CLICK!*</b> Bo'sh kamera! <b>{current_name}</b> omon qoldi! 😅\n\n"
-            f"🔄 Keyingi kamera: <b>{game.roulette_chamber + 1} / 6</b>\n"
-            f"👉 Hozirgi navbat: <b>{other_name}</b>!\n\n"
-            f"Tetikni bosing 👇"
+            f"🔫 <b>*CLICK!*</b> Bo'sh patron joyi! <b>{current_name}</b> omon qoldi! 😅\n\n"
+            f"🔄 Keyingi patron joyi: <b>{game.roulette_chamber + 1} / 6</b>\n"
+            f"👉 Navbat: <b>{other_name}</b>!\n\n"
+            f"Tepkini bosing 👇"
         )
         await callback.message.edit_text(
             text,
             reply_markup=get_roulette_keyboard(game.game_id, other_name),
             parse_mode="HTML"
         )
-        await callback.answer("Click! Kamera bo'sh! Omad keldi.")
+        await callback.answer("Click! Patron joyi bo'sh! Omad keldi.")
 
 
 # ---- TIC-TAC-TOE HANDLERS ----
@@ -699,7 +699,7 @@ async def cb_ttt_move(callback: CallbackQuery, bot: Bot):
             parse_mode="HTML"
         )
         schedule_delete_message(bot, game.chat_id, callback.message.message_id, FINAL_RESULT_DELETE_DELAY)
-        await callback.answer("G'alaba! 🎉")
+        await callback.answer("G'olib bo'ldingiz! 🎉")
 
     elif win_result == "draw":
         # Durang
@@ -726,7 +726,7 @@ async def cb_ttt_move(callback: CallbackQuery, bot: Bot):
         text = (
             f"❌⭕ <b>Tic-Tac-Toe Davom Etmoqda!</b>\n\n"
             f"👤 <b>{html.escape(game.initiator_name)}</b> (❌) ⚔️ 👤 <b>{html.escape(game.opponent_name or 'Raqib')}</b> (⭕)\n\n"
-            f"👉 Hozirgi navbat: <b>{other_name}</b> ({other_symbol}) 👇"
+            f"👉 Navbat: <b>{other_name}</b> ({other_symbol}) 👇"
         )
         await callback.message.edit_text(
             text,
@@ -760,7 +760,7 @@ async def cb_surrender(callback: CallbackQuery, bot: Bot):
     games_manager.remove_game(game.game_id)
 
     result_text = (
-        f"🏳️ <b>O'YIN YAKUNLANDI (TASLIM BO'LISH)!</b>\n\n"
+        f"🏳️ <b>TASLIM BO'LINDI!</b>\n\n"
         f"👤 <b>{loser_name}</b> o'z xohishi bilan taslim bo'ldi!\n\n"
         f"━━━━━━━━━━━━━━━━━━\n"
         f"🥇 <b>G'OLIB:</b> <b>{winner_name}</b> 🏆\n"
@@ -817,8 +817,8 @@ async def cb_random_number(callback: CallbackQuery, bot: Bot):
             f"🔢 <b>Son Topish (1-100) Boshlandi!</b>\n\n"
             f"👤 <b>{init_name}</b> ⚔️ 👤 <b>{opp_name}</b>\n\n"
             f"✅ Har ikkala ishtirokchi ham o'z maxfiy sonini yashirdi!\n\n"
-            f"🎯 Har bir o'yinchi navbati kelganda raqib o'ylagan sonni guruh chatiga yozadi (masalan: <code>50</code>).\n"
-            f"Bot 'Kattaroq 📈' yoki 'Kichikroq 📉' deb ishora beradi.\n\n"
+            f"🎯 Har bir o'yinchi navbatida raqib o'ylagan sonni guruh chatiga yozadi (masalan: <code>50</code>).\n"
+            f"Bot '📈 Kattaroq' yoki '📉 Kichikroq' deb ishora beradi.\n\n"
             f"👉 1-navbat: <b>{init_name}</b>!\n"
             f"Guruhga 1 dan 100 gacha bo'lgan taxminingizni yozing 👇"
         )
@@ -909,7 +909,7 @@ async def handle_guess_number_message(message: Message, bot: Bot):
 
         hint_text = (
             f"{direction}\n"
-            f"👤 <b>{user_name}</b> taxmini: <b>{guess_val}</b> (Oraliq: {bounds[0]} — {bounds[1]})\n\n"
+            f"👤 <b>{user_name}</b> taxmini: <b>{guess_val}</b> | Oraliq: {bounds[0]} — {bounds[1]}\n\n"
             f"👉 Endi navbat: <b>{other_name}</b>!\n"
             f"Taxminingizni guruhga yozing 👇"
         )

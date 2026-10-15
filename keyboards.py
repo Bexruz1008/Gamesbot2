@@ -105,12 +105,12 @@ def get_dice_roll_keyboard(game_id: str, emoji: str, roller_name: str) -> Inline
     )
 
 def get_roulette_keyboard(game_id: str, player_name: str) -> InlineKeyboardMarkup:
-    """Rus ruletkasida tetikni bosish tugmasi"""
+    """Rus ruletkasida tepkini bosish tugmasi"""
     return InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(
-                    text=f"🔫 {player_name} tetikni bosadi!",
+                    text=f"🔫 {player_name} tepkini bosadi!",
                     callback_data=f"trigger:{game_id}"
                 )
             ],

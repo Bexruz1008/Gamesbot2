@@ -16,8 +16,8 @@ PENALTIES = [
     "🤖 5 daqiqa davomida o'zingizni sun'iy intellekt (bot) deb tuting va har bir savolga shunday javob bering!",
     "☕️ Ertaga g'olibga virtual (yoki real) qahva olib berishni va'da qiling!",
     "🎭 Guruhga harflar bilan emas, faqat imo-ishorali emojilar bilan jumboq yozing, boshqalar topsin!",
-    "🧘‍♂️ 5 ta chuqur nafas oling va guruhga tinchlik tilab chiroyli tilak qoldiring!"
-        "🎙️ 30 soniya davomida o'zingizni prezident deb tasavvur qiling va guruhga mamlakatni rivojlantirish bo'yicha jiddiy nutq so'zlang!",
+    "🧘‍♂️ 5 ta chuqur nafas oling va guruhga tinchlik tilab chiroyli tilak qoldiring!",
+    "🎙️ 30 soniya davomida o'zingizni prezident deb tasavvur qiling va guruhga mamlakatni rivojlantirish bo'yicha jiddiy nutq so'zlang!",
 
     "⚖️ G'olibni sudya deb tan oling va 3 ta sabab bilan nega mag'lub bo'lganingizni sud majlisida himoya qilayotgandek tushuntiring!",
 
@@ -35,8 +35,8 @@ PENALTIES = [
 
     "🧑‍🏫 30 soniyalik audio yuboring: 'Nega men yutqazdim?' mavzusida xuddi universitet professori kabi ilmiy ma'ruza qiling!",
 
-    "🚨 Guruhga favqulodda vaziyatlar xizmati xodimi kabi jiddiy ogohlantirish yozing: 'Diqqat! Guruhda juda kuchli chempion aniqlandi. Barcha mag'lublar ehtiyot choralarini ko'rsin!'"
-    "📸Hoziroq o'zingizni suratga oling va guruhga yuboring!"
+    "🚨 Guruhga favqulodda vaziyatlar xizmati xodimi kabi jiddiy ogohlantirish yozing: 'Diqqat! Guruhda juda kuchli chempion aniqlandi. Barcha mag'lublar ehtiyot choralarini ko'rsin!'",
+    "📸 Hoziroq o'zingizni suratga oling va guruhga yuboring!"
 ]
 
 def get_random_penalty() -> str:

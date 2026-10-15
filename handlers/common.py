@@ -23,7 +23,7 @@ Meni guruhingizga qo'shing va do'stlaringiz bilan turli qiziqarli o'yinlar o'yna
 • ⚽ <b>Futbol</b> — penalti seriyasi
 • 🎳 <b>Bowling</b> — keglilarni urish
 • 💣 <b>Rus Ruletkasi</b> — hayajonli tavakkal o'yini
-• ❌⭕ <b>Tic-Tac-Toe</b> — klassik Krestik-Nolik
+• ❌⭕ <b>Tic-Tac-Toe</b> — klassik Xoch-Doira o'yini
 • 🔢 <b>Son Topish (1-100)</b> — maxfiy sonni topish bahsi
 
 Guruhda o'yin boshlash uchun /game yoki /help buyrug'ini yuboring!
@@ -125,8 +125,8 @@ async def pm_set_secret_number(message: Message, bot: Bot):
                     f"🔢 <b>Son Topish (1-100) Boshlandi!</b>\n\n"
                     f"👤 <b>{init_name}</b> ⚔️ 👤 <b>{opp_name}</b>\n\n"
                     f"✅ Har ikkala ishtirokchi ham o'z maxfiy sonini yashirdi!\n\n"
-                    f"🎯 Har bir o'yinchi navbati kelganda raqib o'ylagan sonni guruh chatiga yozadi (masalan: <code>50</code>).\n"
-                    f"Bot 'Kattaroq 📈' yoki 'Kichikroq 📉' deb ishora beradi.\n\n"
+                    f"🎯 Har bir o'yinchi navbatida raqib o'ylagan sonni guruh chatiga yozadi (masalan: <code>50</code>).\n"
+                    f"Bot '📈 Kattaroq' yoki '📉 Kichikroq' deb ishora beradi.\n\n"
                     f"👉 1-navbat: <b>{init_name}</b>!\n"
                     f"Guruhga 1 dan 100 gacha bo'lgan taxminingizni yozing 👇"
                 ),
