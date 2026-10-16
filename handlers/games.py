@@ -19,7 +19,7 @@ from keyboards import (
 
 # Xabarlarni avtomatik o'chirish muddatlari (soniyalarda)
 GAME_MSG_DELETE_DELAY = 5 * 60         # 5 daqiqa (zar, darts va oraliq xabarlar)
-FINAL_RESULT_DELETE_DELAY = 12 * 3600  # 12 soat (g'olib e'lon qilingan natija xabari)
+FINAL_RESULT_DELETE_DELAY = 1 * 3600   # 1 soat (g'olib e'lon qilingan natija xabari)
 
 def schedule_delete_message(bot: Bot, chat_id: int, message_id: int, delay_seconds: int):
     """Xabarni orqa fonda belgilangan muddatdan so'ng xavfsiz o'chirish"""
