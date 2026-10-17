@@ -138,13 +138,14 @@ class GamesManager:
         return None
 
     def find_user_waiting_guess_game(self, user_id: int) -> Optional[GameSession]:
-        """Foydalanuvchi son tanlashi kutilayotgan o'yinni topish"""
+        """Foydalanuvchi son tanlashi kutilayotgan o'yinni topish.
+        O'yin setting_numbers yoki waiting_opponent holatida bo'lsa qaytaradi.
+        """
         for game in self.games.values():
             if (
                 game.game_type == "guess_number"
                 and game.status in ("setting_numbers", "waiting_opponent")
                 and game.is_participant(user_id)
-                and user_id not in game.secret_numbers
             ):
                 return game
         return None

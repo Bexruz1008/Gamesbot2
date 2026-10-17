@@ -231,7 +231,9 @@ async def cb_accept_game(callback: CallbackQuery, bot: Bot):
     # Raqibni biriktiramiz
     game.opponent_id = user.id
     game.opponent_name = user.full_name
-    game.status = "playing"
+    # guess_number uchun status setting_numbers ga pastda o'rnatiladi
+    if game.game_type != "guess_number":
+        game.status = "playing"
 
     init_name_safe = html.escape(game.initiator_name)
     opp_name_safe = html.escape(game.opponent_name)
@@ -477,6 +479,10 @@ async def cb_dice_roll(callback: CallbackQuery, bot: Bot):
     init_name_safe = html.escape(game.initiator_name)
     opp_name_safe = html.escape(game.opponent_name or "Raqib")
     user_name_safe = html.escape(callback.from_user.full_name)
+
+    # Race condition oldini olish: navbatni darhol tozalaymiz
+    # (send_dice async kutish paytida ikkinchi marta bosilmasin)
+    game.current_roller_id = None
 
     # Telegram animatsiyali zarni chatga jo'natish
     dice_msg = await bot.send_dice(chat_id=game.chat_id, emoji=game.dice_emoji)
@@ -896,13 +902,19 @@ async def handle_guess_number_message(message: Message, bot: Bot):
         schedule_delete_message(bot, message.chat.id, win_msg.message_id, FINAL_RESULT_DELETE_DELAY)
     else:
         # Noto'g'ri: Kattaroq yoki Kichikroq
-        bounds = game.guess_bounds.get(message.from_user.id, [1, 100])
+        user_id = message.from_user.id
+        # Mavjud chegaralarni olish (agar yo'q bo'lsa [1,100] bilan yaratish)
+        if user_id not in game.guess_bounds:
+            game.guess_bounds[user_id] = [1, 100]
+        bounds = game.guess_bounds[user_id]
+
         if guess_val < target_num:
             direction = "📈 Raqibingiz o'ylagan son bundan <b>KATTAROQ!</b>"
             bounds[0] = max(bounds[0], guess_val + 1)
         else:
             direction = "📉 Raqibingiz o'ylagan son bundan <b>KICHIKROQ!</b>"
             bounds[1] = min(bounds[1], guess_val - 1)
+        # bounds list reference bo'lganligi sababli o'zgarish avtomatik saqlanadi
 
         # Navbatni boshqasiga o'tkazish
         game.current_turn_id = other_id

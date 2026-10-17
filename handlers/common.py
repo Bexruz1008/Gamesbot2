@@ -101,6 +101,14 @@ async def pm_set_secret_number(message: Message, bot: Bot):
     if not game:
         return
 
+    # O'yin allaqachon boshlangan bo'lsa (playing), son o'zgartirish mumkin emas
+    if game.status == "playing":
+        await message.answer(
+            "⚠️ O'yin allaqachon boshlangan! Maxfiy sonni o'zgartirib bo'lmaydi.",
+            parse_mode="HTML"
+        )
+        return
+
     game.secret_numbers[message.from_user.id] = val
     await message.answer(
         f"✅ Sizning maxfiy soningiz <b>{val}</b> sifatida saqlandi!\n\n"
